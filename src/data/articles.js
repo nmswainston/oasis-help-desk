@@ -1,10 +1,10 @@
 export const articles = [
   {
     id: 'control4-remote-not-responding',
-    title: 'Control4 Remote Not Responding',
+    title: 'Remote Not Responding',
     category: 'Remotes',
-    tags: ['remote', 'control4', 'battery', 'troubleshooting'],
-    summary: 'Fix an unresponsive Control4 remote in a few simple checks.',
+    tags: ['remote', 'control4', 'power', 'reboot'],
+    summary: 'Fix an unresponsive Control4 remote with quick battery and room checks.',
     quickFix: [
       'Replace batteries with fresh premium AA batteries.',
       'Point the remote toward the room you are controlling.',
@@ -23,10 +23,10 @@ export const articles = [
   },
   {
     id: 'tv-no-picture',
-    title: 'TV Has Sound But No Picture',
+    title: 'TV Turns On But Screen Is Black',
     category: 'TV & Video',
-    tags: ['tv', 'video', 'hdmi', 'blank-screen'],
-    summary: 'Bring back picture when audio works but the screen stays dark.',
+    tags: ['tv', 'control4', 'power', 'reboot'],
+    summary: 'Get picture back when the TV powers on but the screen stays black or blank.',
     quickFix: [
       'Confirm the TV is on the correct input.',
       'Turn the TV off, wait 20 seconds, then turn it on.',
@@ -45,10 +45,10 @@ export const articles = [
   },
   {
     id: 'audio-no-sound',
-    title: 'No Sound in Living Room',
+    title: 'No Sound in Room',
     category: 'Audio & Music',
-    tags: ['audio', 'volume', 'mute', 'receiver'],
-    summary: 'Resolve missing sound from TV or music zones quickly.',
+    tags: ['audio', 'control4', 'power', 'reboot'],
+    summary: 'Restore sound when TV or music is silent in the room you are using.',
     quickFix: [
       'Raise volume using the Control4 remote.',
       'Check that Mute is not enabled.',
@@ -67,10 +67,10 @@ export const articles = [
   },
   {
     id: 'wifi-slow-speeds',
-    title: 'WiFi Feels Slow in Main Areas',
+    title: 'WiFi Feels Slow or Unstable',
     category: 'WiFi & Network',
-    tags: ['wifi', 'network', 'internet', 'slow'],
-    summary: 'Improve slow WiFi performance in high-use areas of the home.',
+    tags: ['wifi', 'power', 'reboot'],
+    summary: 'Stabilize slow or dropping WiFi in the areas you use most.',
     quickFix: [
       'Restart your modem and network gateway.',
       'Move closer to a wireless access point for testing.',
@@ -89,10 +89,10 @@ export const articles = [
   },
   {
     id: 'camera-offline',
-    title: 'Security Camera Showing Offline',
+    title: 'Cameras Not Showing',
     category: 'Cameras',
-    tags: ['camera', 'offline', 'security', 'network'],
-    summary: 'Get an offline camera back online with guided checks.',
+    tags: ['camera', 'wifi', 'power', 'reboot'],
+    summary: 'Bring camera feeds back when they are blank, frozen, or offline.',
     quickFix: [
       'Refresh the camera view in your app.',
       'Check if other cameras are online.',
@@ -111,9 +111,9 @@ export const articles = [
   },
   {
     id: 'lighting-scene-not-working',
-    title: 'Lighting Scene Not Working',
+    title: 'Lights Won’t Run the Scene',
     category: 'Lighting & Shades',
-    tags: ['lighting', 'scene', 'keypad', 'control4'],
+    tags: ['lighting', 'control4', 'power', 'reboot'],
     summary: 'Restore one-touch lighting scenes that stopped responding.',
     quickFix: [
       'Press and hold the keypad button for one full second.',
@@ -133,10 +133,10 @@ export const articles = [
   },
   {
     id: 'shades-not-moving',
-    title: 'Motorized Shades Not Moving',
+    title: 'Shades Won’t Move',
     category: 'Lighting & Shades',
-    tags: ['shades', 'window', 'motorized', 'battery'],
-    summary: 'Fix unresponsive shades controlled by Control4 scenes or app.',
+    tags: ['shades', 'control4', 'power', 'reboot'],
+    summary: 'Fix motorized shades that do not respond in the app or from keypads.',
     quickFix: [
       'Check if shade battery pack needs charging.',
       'Try moving shades from the app instead of keypad.',
@@ -155,10 +155,10 @@ export const articles = [
   },
   {
     id: 'music-zone-not-joining',
-    title: 'Music Zone Will Not Join Group',
+    title: 'Music Won’t Play in Every Room',
     category: 'Audio & Music',
-    tags: ['music', 'multiroom', 'zone', 'sync'],
-    summary: 'Resolve multi-room audio zones that refuse to sync together.',
+    tags: ['music', 'audio', 'control4', 'reboot'],
+    summary: 'Sync multi-room audio when one zone will not join the group.',
     quickFix: [
       'Start playback in one room first, then add the second room.',
       'Lower volume briefly in both zones and retry.',
@@ -177,10 +177,10 @@ export const articles = [
   },
   {
     id: 'apple-tv-not-controlling',
-    title: 'Apple TV Not Responding to Control4',
+    title: 'Apple TV Not Responding',
     category: 'TV & Video',
-    tags: ['apple-tv', 'control4', 'video', 'remote'],
-    summary: 'Reconnect Control4 control flow when Apple TV commands fail.',
+    tags: ['apple-tv', 'tv', 'remote', 'control4', 'power', 'reboot'],
+    summary: 'Reconnect Control4 when Apple TV does not respond to remote commands.',
     quickFix: [
       'Re-run Watch Apple TV activity.',
       'Ensure Apple TV is awake and not in deep sleep.',

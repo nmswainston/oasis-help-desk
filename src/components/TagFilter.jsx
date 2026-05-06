@@ -8,10 +8,10 @@ function TagFilter({ tags, selectedTags, onToggle }) {
             type="button"
             key={tag}
             onClick={() => onToggle(tag)}
-            className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+            className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
               active
-                ? 'border-blue-200 bg-blue-50 text-blue-700'
-                : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+                ? 'border-blue-300 bg-blue-50 text-blue-800'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-200 hover:bg-blue-50/60 hover:text-blue-800'
             }`}
           >
             {tag}

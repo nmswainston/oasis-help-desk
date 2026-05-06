@@ -1,9 +1,18 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import ArticleCard from '../components/ArticleCard'
 import SearchBar from '../components/SearchBar'
 import TagFilter from '../components/TagFilter'
 import { articles, categories } from '../data/articles'
 import { searchArticles } from '../utils/search'
+
+const QUICK_ACTIONS = [
+  { label: 'TV Not Working', tag: 'tv' },
+  { label: 'No Sound', tag: 'audio' },
+  { label: 'Remote Not Responding', tag: 'remote' },
+  { label: 'WiFi Issues', tag: 'wifi' },
+  { label: 'Cameras Not Showing', tag: 'camera' },
+]
 
 function HomePage() {
   const [query, setQuery] = useState('')
@@ -35,13 +44,63 @@ function HomePage() {
     )
   }
 
+  const applyQuickFilter = (tag) => {
+    setQuery('')
+    setSelectedCategory('')
+    setSelectedTags([tag])
+  }
+
+  const filterByCardTag = (tag) => {
+    setQuery('')
+    setSelectedCategory('')
+    setSelectedTags([tag])
+  }
+
   return (
-    <section className="space-y-8">
+    <section className="space-y-10 sm:space-y-12">
       <div className="space-y-5 text-center">
         <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
           How can we help?
         </h1>
         <SearchBar value={query} onChange={setQuery} />
+        <p className="mx-auto max-w-2xl text-base text-slate-600">
+          Search for help with your TV, remote, audio, WiFi, and more.
+        </p>
+
+        <div className="space-y-3 pt-2 text-left sm:text-center">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600">
+            Common issues
+          </h2>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+            {QUICK_ACTIONS.map(({ label, tag }) => {
+              const active =
+                selectedTags.length === 1 && selectedTags[0] === tag && !query && !selectedCategory
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => applyQuickFilter(tag)}
+                  className={`rounded-2xl border px-3 py-3 text-left text-sm font-medium transition sm:px-4 ${
+                    active
+                      ? 'border-blue-200 bg-blue-50 text-blue-700'
+                      : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:shadow-sm'
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        <p className="text-sm text-slate-500">
+          <Link
+            to="/before-you-call"
+            className="font-medium text-blue-700 underline-offset-2 hover:text-blue-800 hover:underline"
+          >
+            Before you call support
+          </Link>
+        </p>
       </div>
 
       <div className="space-y-3">
@@ -98,9 +157,14 @@ function HomePage() {
         </div>
 
         {filteredArticles.length ? (
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
             {filteredArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+              <ArticleCard
+                key={article.id}
+                article={article}
+                selectedTags={selectedTags}
+                onTagClick={filterByCardTag}
+              />
             ))}
           </div>
         ) : (
