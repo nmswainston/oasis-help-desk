@@ -106,6 +106,46 @@ export default function Sidebar({ onNavClick }) {
           480-907-7095
         </a>
       </div>
+
+      {/* Client Care concierge card */}
+      <div className="mt-auto px-3 pb-4 pt-4">
+        <a
+          href="https://www.oasissmarthomes.com/client-care"
+          target="_blank"
+          rel="noreferrer"
+          onClick={onNavClick}
+          className="block rounded-xl p-3.5 transition-all"
+          style={{
+            background: 'var(--gold-bg)',
+            border: '1px solid var(--gold-border)',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--gold)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--gold-border)' }}
+        >
+          <div className="mb-2 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--gold)' }}>
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <p className="text-[10px] font-bold uppercase tracking-[0.15em]" style={{ color: 'var(--gold)' }}>
+              Client Care Plans
+            </p>
+          </div>
+          <p className="mb-2.5 text-xs leading-relaxed" style={{ color: 'var(--text-dim)' }}>
+            Remote response, on-site visits, and proactive monitoring — plans for every lifestyle.
+          </p>
+          <div className="space-y-1">
+            {['Remote Response', 'Standard Service', 'Premium Concierge'].map((plan) => (
+              <div key={plan} className="flex items-center gap-1.5">
+                <div className="h-1 w-1 rounded-full shrink-0" style={{ background: 'var(--gold)' }} />
+                <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>{plan}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-2.5 text-[11px] font-semibold" style={{ color: 'var(--gold)' }}>
+            View plans →
+          </p>
+        </a>
+      </div>
     </nav>
   )
 }

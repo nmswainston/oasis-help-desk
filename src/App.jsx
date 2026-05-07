@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
 import ArticlePage from './pages/ArticlePage'
 import BeforeYouCallPage from './pages/BeforeYouCallPage'
+import RemoteTroubleshootPage from './pages/RemoteTroubleshootPage'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/before-you-call" element={<BeforeYouCallPage />} />
+          <Route path="/remotes" element={<RemoteTroubleshootPage />} />
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

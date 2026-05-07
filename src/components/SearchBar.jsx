@@ -18,7 +18,7 @@ export default function SearchBar({ value, onChange }) {
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search — TV, remote, audio, WiFi, cameras..."
+        placeholder="Search - TV, remote, audio, WiFi, cameras..."
         className="w-full rounded-xl py-3 pl-11 pr-4 text-sm outline-none transition-all"
         style={{
           background: 'var(--bg-surface)',

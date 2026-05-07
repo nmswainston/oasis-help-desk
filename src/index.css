@@ -1,68 +1,69 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 /* ─── Light theme (default) ────────────────────────────── */
 :root {
-  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Playfair Display', Georgia, serif;
   --font-ui:      'Plus Jakarta Sans', 'Segoe UI', sans-serif;
 
-  --bg:           #f5f4f1;
+  --bg:           #eef3f7;
   --bg-surface:   #ffffff;
   --bg-sidebar:   #ffffff;
-  --bg-hover:     #f9f8f6;
+  --bg-hover:     #e4ecf4;
 
-  --border:       #e8e5e0;
-  --border-light: #f0ede8;
+  --border:       #cddae8;
+  --border-light: #dde8f0;
 
-  --text:         #1a1916;
-  --text-dim:     #5c5850;
-  --text-muted:   #9e9a94;
+  --text:         #071828;
+  --text-dim:     #2e5070;
+  --text-muted:   #7a9ab0;
 
-  --gold:         #a07830;
-  --gold-light:   #c4983e;
-  --gold-bg:      #fdf5e6;
-  --gold-border:  #e8c97a;
+  --gold:         #8a6820;
+  --gold-light:   #b08830;
+  --gold-bg:      #fdf5e4;
+  --gold-border:  #c8a850;
 
   --alert-bg:     #fff8f0;
-  --alert-border: #f5d9a8;
-  --alert-text:   #92520a;
+  --alert-border: #f0d090;
+  --alert-text:   #7a5010;
 
   --urgent-bg:    #fff1f1;
   --urgent-border:#fecaca;
   --urgent-text:  #b91c1c;
 
-  --header-bg:    #0a0a0a;
-  --header-border:#1e1e1e;
-  --header-text:  #f0ebe0;
-  --header-muted: #6b6560;
+  /* Header always uses navy regardless of mode */
+  --header-bg:    #081828;
+  --header-border:#112540;
+  --header-text:  #eef3f8;
+  --header-muted: #5a8090;
 
-  --sidebar-w:    240px;
+  --sidebar-w:    228px;
 }
 
-/* ─── Dark theme ────────────────────────────────────────── */
+/* ─── Dark theme — deep navy to match parent site ───────── */
 [data-theme="dark"] {
-  --bg:           #0b0b0b;
-  --bg-surface:   #141414;
-  --bg-sidebar:   #111111;
-  --bg-hover:     #1a1a1a;
+  --bg:           #071828;
+  --bg-surface:   #0c2238;
+  --bg-sidebar:   #091e30;
+  --bg-hover:     #102840;
 
-  --border:       #252525;
-  --border-light: #1e1e1e;
+  --border:       #1a3a55;
+  --border-light: #122840;
 
-  --text:         #f0ebe0;
-  --text-dim:     #a09890;
-  --text-muted:   #5e5a55;
+  --text:         #eef3f8;
+  --text-dim:     #88afc8;
+  --text-muted:   #3a6880;
 
   --gold:         #c4a265;
-  --gold-light:   #d4b47a;
-  --gold-bg:      #1e1810;
-  --gold-border:  #6a5030;
+  --gold-light:   #d4b87a;
+  --gold-bg:      #12100a;
+  --gold-border:  #5a4020;
 
-  --alert-bg:     #1a1508;
-  --alert-border: #4a3510;
-  --alert-text:   #d4a855;
+  --alert-bg:     #0e1a08;
+  --alert-border: #3a4518;
+  --alert-text:   #c0b858;
 
-  --urgent-bg:    #1a0808;
+  --urgent-bg:    #180808;
   --urgent-border:#4a1515;
   --urgent-text:  #f87171;
 }
@@ -77,7 +78,13 @@ body {
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.25s, color 0.25s;
+}
+
+/* Dark mode gets a subtle navy radial gradient — matches the parent site */
+[data-theme="dark"] body {
+  background-image: radial-gradient(ellipse 80% 50% at 85% 20%, #0f3a5880 0%, transparent 60%);
+  background-attachment: fixed;
 }
 
 #root { min-height: 100vh; }
@@ -88,11 +95,16 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold-border); }
 
-/* ─── Sidebar transition ────────────────────────────────── */
+/* ─── Sidebar ───────────────────────────────────────────── */
 .sidebar-surface {
   background: var(--bg-sidebar);
   border-right: 1px solid var(--border);
-  transition: background 0.2s;
+  transition: background 0.25s;
+}
+
+/* ─── Display headings ──────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
 }
 
 /* ─── Focus ring ────────────────────────────────────────── */

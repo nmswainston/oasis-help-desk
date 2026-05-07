@@ -1,104 +1,17 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ArticleCard from '../components/ArticleCard'
 import SearchBar from '../components/SearchBar'
 import TagFilter from '../components/TagFilter'
-import { alerts } from '../data/alerts'
 import { articles } from '../data/articles'
 import { searchArticles } from '../utils/search'
-
-function AlertBanner({ alert, onDismiss }) {
-  return (
-    <div
-      className="flex items-start gap-3 rounded-xl p-4"
-      style={{
-        background: alert.urgent ? 'var(--urgent-bg)' : 'var(--alert-bg)',
-        border: `1px solid ${alert.urgent ? 'var(--urgent-border)' : 'var(--alert-border)'}`,
-      }}
-      role="alert"
-    >
-      {/* Icon */}
-      <div className="mt-0.5 shrink-0">
-        {alert.urgent ? (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--urgent-text)' }}>
-            <path fillRule="evenodd" d="M12 2a10 10 0 100 20A10 10 0 0012 2zm.75 5.25a.75.75 0 00-1.5 0v5a.75.75 0 001.5 0v-5zm-.75 8a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--alert-text)' }}>
-            <path fillRule="evenodd" d="M12 2a10 10 0 100 20A10 10 0 0012 2zm.75 5.25a.75.75 0 00-1.5 0v5a.75.75 0 001.5 0v-5zm-.75 8a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
-          </svg>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 min-w-0">
-        <p
-          className="text-sm font-semibold"
-          style={{ color: alert.urgent ? 'var(--urgent-text)' : 'var(--alert-text)' }}
-        >
-          {alert.title}
-        </p>
-        <p className="mt-0.5 text-xs leading-relaxed" style={{ color: alert.urgent ? 'var(--urgent-text)' : 'var(--alert-text)', opacity: 0.85 }}>
-          {alert.body}
-          {alert.link && (
-            <>
-              {' '}
-              <a
-                href={alert.link}
-                target="_blank"
-                rel="noreferrer"
-                className="underline underline-offset-2"
-              >
-                {alert.linkLabel}
-              </a>
-            </>
-          )}
-        </p>
-      </div>
-
-      {/* Dismiss */}
-      <button
-        type="button"
-        onClick={onDismiss}
-        className="shrink-0 opacity-50 transition-opacity hover:opacity-100"
-        style={{ color: alert.urgent ? 'var(--urgent-text)' : 'var(--alert-text)' }}
-        aria-label="Dismiss alert"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-  )
-}
 
 export default function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [query, setQuery] = useState('')
   const [selectedTags, setSelectedTags] = useState([])
-  const [dismissed, setDismissed] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('oasis-dismissed-alerts') || '[]')
-    } catch {
-      return []
-    }
-  })
 
   const selectedCategory = searchParams.get('category') || ''
-
-  // Sync search param category changes
-  useEffect(() => {
-    setQuery('')
-    setSelectedTags([])
-  }, [selectedCategory])
-
-  const dismiss = (id) => {
-    const next = [...dismissed, id]
-    setDismissed(next)
-    try { localStorage.setItem('oasis-dismissed-alerts', JSON.stringify(next)) } catch {}
-  }
-
-  const visibleAlerts = alerts.filter((a) => !dismissed.includes(a.id))
 
   const availableTags = useMemo(() => {
     return [...new Set(articles.flatMap((a) => a.tags))].sort()
@@ -132,20 +45,7 @@ export default function HomePage() {
   return (
     <div className="space-y-4">
 
-      {/* Alerts */}
-      {visibleAlerts.length > 0 && (
-        <div className="space-y-2">
-          {visibleAlerts.map((alert) => (
-            <AlertBanner
-              key={alert.id}
-              alert={alert}
-              onDismiss={() => dismiss(alert.id)}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Page header + search — compact single block */}
+      {/* Page header + search */}
       <div
         className="rounded-xl p-4 sm:p-5"
         style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
@@ -171,7 +71,7 @@ export default function HomePage() {
         <SearchBar value={query} onChange={setQuery} />
       </div>
 
-      {/* Tag filter — inline label */}
+      {/* Tag filter */}
       <div className="flex flex-wrap items-center gap-2">
         <span
           className="shrink-0 text-[10px] font-bold uppercase tracking-[0.15em]"
@@ -186,9 +86,9 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Article grid — 2 cols on sm, 3 on xl */}
+      {/* Article grid - always 2 columns on sm+ */}
       {filteredArticles.length > 0 ? (
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2">
           {filteredArticles.map((article) => (
             <ArticleCard
               key={article.id}

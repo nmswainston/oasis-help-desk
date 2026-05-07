@@ -1,6 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react'
-
-const ThemeContext = createContext(null)
+import { useEffect, useState } from 'react'
+import ThemeContext from './themeContextValue'
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
@@ -15,7 +14,9 @@ export function ThemeProvider({ children }) {
     document.documentElement.setAttribute('data-theme', theme)
     try {
       localStorage.setItem('oasis-theme', theme)
-    } catch {}
+    } catch {
+      // Ignore storage failures and keep theme in memory.
+    }
   }, [theme])
 
   const toggle = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'))
@@ -25,10 +26,4 @@ export function ThemeProvider({ children }) {
       {children}
     </ThemeContext.Provider>
   )
-}
-
-export function useTheme() {
-  const ctx = useContext(ThemeContext)
-  if (!ctx) throw new Error('useTheme must be used inside ThemeProvider')
-  return ctx
 }

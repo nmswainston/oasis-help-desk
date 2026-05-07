@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import ThemeToggle from './ThemeToggle'
+import UpdatesPanel from './UpdatesPanel'
 
 function SearchIcon() {
   return (
@@ -14,11 +15,17 @@ function SearchIcon() {
 export default function Layout() {
   const { pathname } = useLocation()
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const showUpdates = pathname === '/'
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
-    setDrawerOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (!drawerOpen) return undefined
+    const timeoutId = setTimeout(() => setDrawerOpen(false), 0)
+    return () => clearTimeout(timeoutId)
+  }, [pathname, drawerOpen])
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -59,51 +66,46 @@ export default function Layout() {
           </button>
 
           {/* Logo */}
-          <Link to="/" className="shrink-0">
+          <a
+            href="https://www.oasissmarthomes.com"
+            target="_blank"
+            rel="noreferrer"
+            className="shrink-0"
+          >
             <img
               src="https://res.cloudinary.com/dsqd7lnop/image/upload/c_limit,w_320/f_auto/q_auto/v1/logo-light.png"
-              alt="Oasis Smart Homes Help"
+              alt="Oasis Smart Homes"
               className="h-6 w-auto object-contain opacity-90 transition-opacity hover:opacity-70"
             />
+          </a>
+
+          {/* Divider — desktop only */}
+          <div className="mx-1 hidden h-5 w-px shrink-0 lg:block" style={{ background: 'var(--header-border)' }} />
+
+          {/* Help Center — centered on mobile, inline left on desktop */}
+          <Link
+            to="/"
+            className="absolute left-1/2 -translate-x-1/2 text-xs font-medium tracking-widest uppercase whitespace-nowrap transition hover:opacity-70 lg:static lg:left-auto lg:translate-x-0"
+            style={{ color: 'var(--header-muted)' }}
+          >
+            Help Center
           </Link>
 
-          {/* Divider */}
-          <div className="mx-1 hidden h-5 w-px shrink-0 sm:block" style={{ background: 'var(--header-border)' }} />
-          <span className="hidden text-xs font-medium tracking-widest uppercase sm:block" style={{ color: 'var(--header-muted)' }}>
-            Help Center
-          </span>
-
-          {/* Search (desktop) */}
-          <div className="mx-3 hidden flex-1 lg:flex">
-            <Link
-              to="/"
-              className="flex w-full max-w-sm items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition"
-              style={{
-                background: '#1a1a1a',
-                border: '1px solid #2a2a2a',
-                color: '#6b6560',
-              }}
-            >
-              <SearchIcon />
-              <span>Search help articles...</span>
-            </Link>
-          </div>
-
-          {/* Spacer (mobile) */}
-          <div className="flex-1 lg:hidden" />
+          {/* Spacer — pushes right buttons to the right on all sizes */}
+          <div className="flex-1" />
 
           {/* Right side */}
           <div className="flex items-center gap-1">
             <ThemeToggle />
             <a
               href="tel:+14809077095"
-              className="ml-1 hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide uppercase transition sm:flex"
+              className="ml-1 hidden items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide uppercase transition sm:flex"
               style={{
-                border: '1px solid #2a2a2a',
+                border: '1px solid #1a3a55',
                 color: 'var(--gold)',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--gold-border)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#2a2a2a' }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--gold)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#1a3a55' }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" />
@@ -160,7 +162,7 @@ export default function Layout() {
           <div className="mb-4 lg:hidden">
             <Link
               to="/"
-              className="flex w-full items-center gap-2 rounded-lg px-4 py-2.5 text-sm"
+              className="flex w-full items-center gap-2 rounded-full px-4 py-2.5 text-sm"
               style={{
                 background: 'var(--bg-surface)',
                 border: '1px solid var(--border)',
@@ -174,6 +176,16 @@ export default function Layout() {
 
           <Outlet />
         </main>
+
+        {/* Updates panel — homepage only, desktop only */}
+        {showUpdates && (
+          <div
+            className="hidden lg:block sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto"
+            style={{ flexShrink: 0 }}
+          >
+            <UpdatesPanel />
+          </div>
+        )}
       </div>
 
       {/* ── Footer ── */}

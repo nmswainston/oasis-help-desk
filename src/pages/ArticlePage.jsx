@@ -157,6 +157,28 @@ export default function ArticlePage() {
         </ul>
       </Section>
 
+      {/* Related articles — only shown when relatedArticles field exists */}
+      {article.relatedArticles?.length > 0 && (
+        <Section title="Jump to a Specific Remote">
+          <ul className="space-y-2">
+            {article.relatedArticles.map(({ id, label }) => (
+              <li key={id}>
+                <Link
+                  to={`/article/${id}`}
+                  className="flex items-center gap-2 text-sm font-medium transition hover:opacity-70"
+                  style={{ color: 'var(--gold)' }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
       {/* CTA */}
       <section
         className="rounded-xl p-5 sm:p-6"

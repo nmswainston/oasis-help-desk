@@ -8,7 +8,7 @@ export const alerts = [
     urgent: true,
     title: 'Roku Update 15.x Breaks Control4 Integration',
     body: 'A recent Roku OS update changes network control to "limited" mode, which disrupts Control4 commands. If your Roku stopped responding, this is likely why.',
-    link: 'https://www.control4.com',
+    link: '/article/roku-update-15-control4-fix',
     linkLabel: 'Learn more',
   },
   {

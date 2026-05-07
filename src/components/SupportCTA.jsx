@@ -42,7 +42,7 @@ function SupportCTA() {
 
       <p className="mt-4 inline-flex items-center gap-2 text-xs text-oasis-warm-soft">
         <Headset className="h-3.5 w-3.5" aria-hidden />
-        Share what you tried—we pick up faster when context is clear.
+        Share what you tried, we pick up faster when context is clear.
       </p>
     </section>
   )

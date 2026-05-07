@@ -49,7 +49,7 @@ function BeforeYouCallPromo() {
             <ChevronRight className="h-4 w-4" aria-hidden />
           </Link>
           <p className="text-center text-xs text-oasis-warm-soft sm:text-right">
-            Saves time—for you and our team.
+            Saves time for you and our team.
           </p>
         </div>
       </div>

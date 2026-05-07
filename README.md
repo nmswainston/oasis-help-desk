@@ -1,6 +1,6 @@
 # Oasis Smart Home Help
 
-Client-facing support knowledgebase for luxury smart home residents. Delivers quick, searchable troubleshooting for Control4-based systems—TVs, audio, remotes, WiFi, cameras, lighting, and shades—with a guided “before you call” flow to cut preventable support volume.
+Client-facing support knowledgebase for Oasis Luxury Smart Home clients. Delivers quick, searchable troubleshooting for Control4-based systems - TVs, audio, remotes, WiFi, cameras, lighting, and shades - with a guided "before you call" flow to cut preventable support volume.
 
 ## Features
 

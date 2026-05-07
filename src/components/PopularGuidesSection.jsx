@@ -19,7 +19,7 @@ function PopularGuidesSection({ articles }) {
     <section className="space-y-4">
       <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <h2 className="text-lg font-semibold tracking-tight text-oasis-warm">Popular Guides</h2>
-        <p className="text-sm text-oasis-warm-soft">Jump in—no search needed.</p>
+        <p className="text-sm text-oasis-warm-soft">Jump in - no search needed.</p>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {popular.map((article) => (

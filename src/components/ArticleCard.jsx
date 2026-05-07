@@ -18,7 +18,7 @@ export default function ArticleCard({ article, onTagClick, selectedTags = [] }) 
       }}
     >
       <Link
-        to={`/article/${article.id}`}
+        to={article.route || `/article/${article.id}`}
         className="flex flex-1 flex-col p-4"
       >
         {/* Category label */}

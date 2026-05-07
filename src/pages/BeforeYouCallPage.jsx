@@ -187,6 +187,116 @@ export default function BeforeYouCallPage() {
         </p>
       )}
 
+      {/* Client Care concierge pitch — always visible */}
+      <section
+        className="rounded-xl overflow-hidden"
+        style={{ border: '1px solid var(--border)' }}
+      >
+        {/* Header bar */}
+        <div
+          className="px-6 py-4"
+          style={{ background: 'var(--header-bg)' }}
+        >
+          <div className="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--gold)' }}>
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: 'var(--gold)' }}>
+              Client Care Program
+            </p>
+          </div>
+          <h2 className="mt-1 text-xl font-semibold" style={{ color: '#eef3f8', fontFamily: 'var(--font-display)' }}>
+            White-Glove Service & 24/7 Remote Support
+          </h2>
+          <p className="mt-1 text-sm" style={{ color: '#5a8090' }}>
+            Remote diagnostics and proactive monitoring — always one call or text away.
+          </p>
+        </div>
+
+        {/* Three plans */}
+        <div
+          className="grid gap-px sm:grid-cols-3"
+          style={{ background: 'var(--border)' }}
+        >
+          {[
+            {
+              tier: 'Essential',
+              name: 'Remote Response',
+              perks: ['Phone, text & email support', 'Secure remote system log-in'],
+            },
+            {
+              tier: 'Most Popular',
+              name: 'Standard Service',
+              perks: ['24/7 support', '4 on-site visits per year', 'Unlimited remote appointments', '10% off new products'],
+              highlight: true,
+            },
+            {
+              tier: 'Full Journey',
+              name: 'Premium Concierge',
+              perks: ['Unlimited on-site service', 'Proactive system monitoring', 'Loaner equipment available', 'Priority scheduling'],
+            },
+          ].map(({ tier, name, perks, highlight }) => (
+            <div
+              key={name}
+              className="flex flex-col p-5"
+              style={{ background: highlight ? 'var(--gold-bg)' : 'var(--bg-surface)' }}
+            >
+              <p
+                className="mb-1 text-[10px] font-bold uppercase tracking-[0.15em]"
+                style={{ color: highlight ? 'var(--gold)' : 'var(--text-muted)' }}
+              >
+                {tier}
+              </p>
+              <p className="mb-3 text-sm font-semibold" style={{ color: 'var(--text)' }}>
+                {name}
+              </p>
+              <ul className="mb-4 flex-1 space-y-1.5">
+                {perks.map((perk) => (
+                  <li key={perk} className="flex items-start gap-2 text-xs" style={{ color: 'var(--text-dim)' }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="mt-0.5 h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--gold)' }}>
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    {perk}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://www.oasissmarthomes.com/contact"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold transition-opacity hover:opacity-80"
+                style={
+                  highlight
+                    ? { background: 'var(--gold)', color: '#fff' }
+                    : { border: '1px solid var(--border)', color: 'var(--text-dim)' }
+                }
+              >
+                Inquire
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div
+          className="flex flex-col gap-2 px-6 py-4 sm:flex-row sm:items-center sm:justify-between"
+          style={{ background: 'var(--bg-surface)', borderTop: '1px solid var(--border)' }}
+        >
+          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+            All plans include secure remote access and 24/7 support via text, phone, or email.
+          </p>
+          <a
+            href="https://www.oasissmarthomes.com/client-care"
+            target="_blank"
+            rel="noreferrer"
+            className="shrink-0 text-xs font-semibold transition hover:opacity-70"
+            style={{ color: 'var(--gold)' }}
+          >
+            View full Client Care page →
+          </a>
+        </div>
+      </section>
+
     </div>
   )
 }
