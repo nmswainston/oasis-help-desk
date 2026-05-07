@@ -1,29 +1,8 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { alerts } from '../data/alerts'
 
 export default function UpdatesPanel() {
-  const [dismissed, setDismissed] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('oasis-dismissed-alerts') || '[]')
-    } catch {
-      return []
-    }
-  })
-
-  const dismiss = (id) => {
-    const next = [...dismissed, id]
-    setDismissed(next)
-    try {
-      localStorage.setItem('oasis-dismissed-alerts', JSON.stringify(next))
-    } catch {
-      // Ignore storage failures (e.g. private mode / blocked storage).
-    }
-  }
-
-  const visible = alerts.filter((a) => !dismissed.includes(a.id))
-
-  if (visible.length === 0) return null
+  if (alerts.length === 0) return null
 
   return (
     <aside
@@ -49,37 +28,24 @@ export default function UpdatesPanel() {
 
       {/* Alert list */}
       <div
-        className="flex-1 overflow-y-auto divide-y"
-        style={{
-          background: 'var(--bg-surface)',
-          borderColor: 'var(--border)',
-          divideColor: 'var(--border)',
-        }}
+        className="flex-1 overflow-y-auto"
+        style={{ background: 'var(--bg-surface)' }}
       >
-        {visible.map((alert) => (
-          <div key={alert.id} className="relative p-4">
-            {/* Dismiss */}
-            <button
-              type="button"
-              onClick={() => dismiss(alert.id)}
-              className="absolute right-3 top-3 opacity-30 transition-opacity hover:opacity-70"
-              style={{ color: 'var(--text-muted)' }}
-              aria-label="Dismiss"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Title */}
+        {alerts.map((alert, i) => (
+          <div
+            key={alert.id}
+            className="p-4"
+            style={{
+              borderBottom: i < alerts.length - 1 ? '1px solid var(--border)' : 'none',
+            }}
+          >
             <p
-              className="mb-1.5 pr-5 text-sm font-semibold leading-snug"
+              className="mb-1.5 text-sm font-semibold leading-snug"
               style={{ color: alert.urgent ? 'var(--urgent-text)' : 'var(--gold)' }}
             >
               {alert.title}
             </p>
 
-            {/* Body */}
             <p className="text-xs leading-relaxed" style={{ color: 'var(--text-dim)' }}>
               {alert.body}
               {alert.link && (
