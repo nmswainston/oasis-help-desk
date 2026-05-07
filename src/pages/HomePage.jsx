@@ -130,7 +130,7 @@ export default function HomePage() {
   const hasFilters = query || selectedCategory || selectedTags.length > 0
 
   return (
-    <div className="mx-auto max-w-3xl space-y-5">
+    <div className="space-y-4">
 
       {/* Alerts */}
       {visibleAlerts.length > 0 && (
@@ -145,29 +145,40 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Page header */}
-      <div>
-        <h1
-          className="text-2xl font-semibold"
-          style={{ color: 'var(--text)', fontFamily: 'var(--font-ui)' }}
-        >
-          {selectedCategory || 'Help Center'}
-        </h1>
-        <p className="mt-1 text-sm" style={{ color: 'var(--text-dim)' }}>
-          {selectedCategory
-            ? `Troubleshooting articles for ${selectedCategory}.`
-            : 'Search for help or browse categories in the sidebar.'}
-        </p>
+      {/* Page header + search — compact single block */}
+      <div
+        className="rounded-xl p-4 sm:p-5"
+        style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+      >
+        <div className="mb-3 flex items-baseline justify-between gap-4">
+          <h1 className="text-lg font-semibold" style={{ color: 'var(--text)' }}>
+            {selectedCategory || 'Help Center'}
+          </h1>
+          <span className="shrink-0 text-xs" style={{ color: 'var(--text-muted)' }}>
+            {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''}
+            {hasFilters && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="ml-2 font-medium transition hover:opacity-70"
+                style={{ color: 'var(--gold)' }}
+              >
+                Clear ×
+              </button>
+            )}
+          </span>
+        </div>
+        <SearchBar value={query} onChange={setQuery} />
       </div>
 
-      {/* Search */}
-      <SearchBar value={query} onChange={setQuery} />
-
-      {/* Tag filter */}
-      <div className="space-y-2">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em]" style={{ color: 'var(--text-muted)' }}>
-          Filter by tag
-        </p>
+      {/* Tag filter — inline label */}
+      <div className="flex flex-wrap items-center gap-2">
+        <span
+          className="shrink-0 text-[10px] font-bold uppercase tracking-[0.15em]"
+          style={{ color: 'var(--text-muted)' }}
+        >
+          Tags:
+        </span>
         <TagFilter
           tags={availableTags}
           selectedTags={selectedTags}
@@ -175,28 +186,9 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Articles header row */}
-      <div className="flex items-center justify-between">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em]" style={{ color: 'var(--text-muted)' }}>
-          {hasFilters
-            ? `${filteredArticles.length} result${filteredArticles.length !== 1 ? 's' : ''}`
-            : `${articles.length} articles`}
-        </p>
-        {hasFilters && (
-          <button
-            type="button"
-            onClick={clearFilters}
-            className="text-xs font-medium transition hover:opacity-70"
-            style={{ color: 'var(--gold)' }}
-          >
-            Clear all filters ×
-          </button>
-        )}
-      </div>
-
-      {/* Article grid */}
+      {/* Article grid — 2 cols on sm, 3 on xl */}
       {filteredArticles.length > 0 ? (
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {filteredArticles.map((article) => (
             <ArticleCard
               key={article.id}
@@ -213,10 +205,7 @@ export default function HomePage() {
       ) : (
         <div
           className="rounded-xl p-8 text-center"
-          style={{
-            background: 'var(--bg-surface)',
-            border: '1px solid var(--border)',
-          }}
+          style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
         >
           <p className="text-sm font-medium" style={{ color: 'var(--text-dim)' }}>
             No articles matched your search.
@@ -228,11 +217,7 @@ export default function HomePage() {
             type="button"
             onClick={clearFilters}
             className="mt-4 rounded-lg px-4 py-2 text-xs font-semibold transition"
-            style={{
-              background: 'var(--gold-bg)',
-              border: '1px solid var(--gold-border)',
-              color: 'var(--gold)',
-            }}
+            style={{ background: 'var(--gold-bg)', border: '1px solid var(--gold-border)', color: 'var(--gold)' }}
           >
             Clear filters
           </button>

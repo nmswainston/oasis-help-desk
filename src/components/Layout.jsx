@@ -153,7 +153,7 @@ export default function Layout() {
 
         {/* Main content */}
         <main
-          className="flex-1 overflow-x-hidden px-4 py-6 sm:px-6 sm:py-8"
+          className="flex-1 overflow-x-hidden px-4 py-4 sm:px-6 sm:py-6"
           style={{ minWidth: 0 }}
         >
           {/* Mobile search */}
