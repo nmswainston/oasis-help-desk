@@ -5,6 +5,7 @@ export const articles = [
     category: 'Remotes',
     tags: ['remote', 'control4', 'power', 'reboot'],
     summary: 'Fix an unresponsive Control4 remote with quick battery and room checks.',
+    estimatedRead: '2–3 min fix',
     quickFix: [
       'Replace batteries with fresh premium AA batteries.',
       'Point the remote toward the room you are controlling.',
@@ -27,6 +28,7 @@ export const articles = [
     category: 'TV & Video',
     tags: ['tv', 'control4', 'power', 'reboot'],
     summary: 'Get picture back when the TV powers on but the screen stays black or blank.',
+    estimatedRead: '2–3 min fix',
     quickFix: [
       'Confirm the TV is on the correct input.',
       'Turn the TV off, wait 20 seconds, then turn it on.',
@@ -49,6 +51,7 @@ export const articles = [
     category: 'Audio & Music',
     tags: ['audio', 'control4', 'power', 'reboot'],
     summary: 'Restore sound when TV or music is silent in the room you are using.',
+    estimatedRead: '2–3 min fix',
     quickFix: [
       'Raise volume using the Control4 remote.',
       'Check that Mute is not enabled.',
@@ -71,6 +74,7 @@ export const articles = [
     category: 'WiFi & Network',
     tags: ['wifi', 'power', 'reboot'],
     summary: 'Stabilize slow or dropping WiFi in the areas you use most.',
+    estimatedRead: '3–4 min fix',
     quickFix: [
       'Restart your modem and network gateway.',
       'Move closer to a wireless access point for testing.',
@@ -93,6 +97,7 @@ export const articles = [
     category: 'Cameras',
     tags: ['camera', 'wifi', 'power', 'reboot'],
     summary: 'Bring camera feeds back when they are blank, frozen, or offline.',
+    estimatedRead: '3 min fix',
     quickFix: [
       'Refresh the camera view in your app.',
       'Check if other cameras are online.',
@@ -115,6 +120,7 @@ export const articles = [
     category: 'Lighting & Shades',
     tags: ['lighting', 'control4', 'power', 'reboot'],
     summary: 'Restore one-touch lighting scenes that stopped responding.',
+    estimatedRead: '2–3 min fix',
     quickFix: [
       'Press and hold the keypad button for one full second.',
       'Try the same scene from the Control4 app.',
@@ -137,6 +143,7 @@ export const articles = [
     category: 'Lighting & Shades',
     tags: ['shades', 'control4', 'power', 'reboot'],
     summary: 'Fix motorized shades that do not respond in the app or from keypads.',
+    estimatedRead: '3 min fix',
     quickFix: [
       'Check if shade battery pack needs charging.',
       'Try moving shades from the app instead of keypad.',
@@ -159,6 +166,7 @@ export const articles = [
     category: 'Audio & Music',
     tags: ['music', 'audio', 'control4', 'reboot'],
     summary: 'Sync multi-room audio when one zone will not join the group.',
+    estimatedRead: '3–4 min fix',
     quickFix: [
       'Start playback in one room first, then add the second room.',
       'Lower volume briefly in both zones and retry.',
@@ -181,6 +189,7 @@ export const articles = [
     category: 'TV & Video',
     tags: ['apple-tv', 'tv', 'remote', 'control4', 'power', 'reboot'],
     summary: 'Reconnect Control4 when Apple TV does not respond to remote commands.',
+    estimatedRead: '3 min fix',
     quickFix: [
       'Re-run Watch Apple TV activity.',
       'Ensure Apple TV is awake and not in deep sleep.',
