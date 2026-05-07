@@ -1,6 +1,6 @@
-function TagFilter({ tags, selectedTags, onToggle }) {
+export default function TagFilter({ tags, selectedTags, onToggle }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1.5">
       {tags.map((tag) => {
         const active = selectedTags.includes(tag)
         return (
@@ -8,11 +8,12 @@ function TagFilter({ tags, selectedTags, onToggle }) {
             type="button"
             key={tag}
             onClick={() => onToggle(tag)}
-            className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-              active
-                ? 'border-oasis-champagne/70 bg-oasis-champagne/15 text-oasis-warm ring-1 ring-oasis-champagne/20'
-                : 'border-oasis-border bg-oasis-panel-soft text-oasis-warm-soft hover:border-oasis-champagne/35 hover:text-oasis-warm'
-            }`}
+            className="rounded-md px-3 py-1 text-xs font-medium transition-all"
+            style={{
+              background: active ? 'var(--gold-bg)' : 'var(--bg-surface)',
+              border: `1px solid ${active ? 'var(--gold-border)' : 'var(--border)'}`,
+              color: active ? 'var(--gold)' : 'var(--text-dim)',
+            }}
           >
             {tag}
           </button>
@@ -21,5 +22,3 @@ function TagFilter({ tags, selectedTags, onToggle }) {
     </div>
   )
 }
-
-export default TagFilter

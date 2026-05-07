@@ -1,28 +1,103 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-@theme {
-  --color-oasis-navy: #0b1d3a;
-  --color-oasis-slate: #123a63;
-  --color-oasis-cream: #f6f3ec;
-  --color-oasis-cream-alt: #f8fafc;
-  --color-oasis-accent: #00b6f1;
-  --color-oasis-gold: #00a0da;
-  --color-oasis-ink: #f6f3ec;
-  --color-oasis-panel: #ffffff;
-  --color-oasis-panel-soft: #edf7fc;
-  --color-oasis-warm: #0b1d3a;
-  --color-oasis-warm-soft: #4b556b;
-  --color-oasis-champagne: #00b6f1;
-  --color-oasis-border: rgb(11 29 58 / 0.12);
-  --shadow-oasis-card: 0 1px 2px rgb(15 23 42 / 0.05), 0 12px 34px rgb(15 23 42 / 0.08);
-  --shadow-oasis-card-hover: 0 4px 8px rgb(15 23 42 / 0.06), 0 20px 44px rgb(15 23 42 / 0.12);
+/* ─── Light theme (default) ────────────────────────────── */
+:root {
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-ui:      'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+
+  --bg:           #f5f4f1;
+  --bg-surface:   #ffffff;
+  --bg-sidebar:   #ffffff;
+  --bg-hover:     #f9f8f6;
+
+  --border:       #e8e5e0;
+  --border-light: #f0ede8;
+
+  --text:         #1a1916;
+  --text-dim:     #5c5850;
+  --text-muted:   #9e9a94;
+
+  --gold:         #a07830;
+  --gold-light:   #c4983e;
+  --gold-bg:      #fdf5e6;
+  --gold-border:  #e8c97a;
+
+  --alert-bg:     #fff8f0;
+  --alert-border: #f5d9a8;
+  --alert-text:   #92520a;
+
+  --urgent-bg:    #fff1f1;
+  --urgent-border:#fecaca;
+  --urgent-text:  #b91c1c;
+
+  --header-bg:    #0a0a0a;
+  --header-border:#1e1e1e;
+  --header-text:  #f0ebe0;
+  --header-muted: #6b6560;
+
+  --sidebar-w:    240px;
 }
+
+/* ─── Dark theme ────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg:           #0b0b0b;
+  --bg-surface:   #141414;
+  --bg-sidebar:   #111111;
+  --bg-hover:     #1a1a1a;
+
+  --border:       #252525;
+  --border-light: #1e1e1e;
+
+  --text:         #f0ebe0;
+  --text-dim:     #a09890;
+  --text-muted:   #5e5a55;
+
+  --gold:         #c4a265;
+  --gold-light:   #d4b47a;
+  --gold-bg:      #1e1810;
+  --gold-border:  #6a5030;
+
+  --alert-bg:     #1a1508;
+  --alert-border: #4a3510;
+  --alert-text:   #d4a855;
+
+  --urgent-bg:    #1a0808;
+  --urgent-border:#4a1515;
+  --urgent-text:  #f87171;
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  @apply bg-oasis-ink text-oasis-warm antialiased;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.2s, color 0.2s;
 }
 
-#root {
-  @apply min-h-screen;
+#root { min-height: 100vh; }
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-border); }
+
+/* ─── Sidebar transition ────────────────────────────────── */
+.sidebar-surface {
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+/* ─── Focus ring ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

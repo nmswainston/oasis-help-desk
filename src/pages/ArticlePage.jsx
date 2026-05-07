@@ -1,131 +1,255 @@
-import { createElement } from 'react'
-import { ArrowLeft, Clock } from 'lucide-react'
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import ArticleFeedback from '../components/ArticleFeedback'
 import { articles } from '../data/articles'
-import { getCategoryIcon } from '../utils/categoryMeta'
 
-const TEL_SUPPORT = 'tel:+14805550100'
-const MAIL_SCHEDULE =
-  'mailto:support@example.com?subject=Smart%20Home%20Support%20Request'
-
-const DEFAULT_ESTIMATED = '2–3 min fix'
-
-function ArticlePage() {
-  const { id } = useParams()
-  const article = articles.find((item) => item.id === id)
-
-  if (!article) {
-    return (
-      <section className="rounded-3xl border border-oasis-border bg-oasis-panel p-8 shadow-oasis-card">
-        <h1 className="mb-2 text-2xl font-semibold text-oasis-warm">Article Not Found</h1>
-        <p className="mb-4 text-oasis-warm-soft">
-          The article you tried to open is unavailable.
-        </p>
-        <Link
-          to="/"
-          className="text-sm font-medium text-oasis-champagne hover:underline"
-        >
-          Return to help center
-        </Link>
-      </section>
-    )
-  }
-
-  const estimatedRead = article.estimatedRead ?? DEFAULT_ESTIMATED
-
+function StepBlock({ number, text }) {
   return (
-    <article className="space-y-8">
-      <Link
-        to="/"
-        className="inline-flex items-center gap-2 text-sm font-medium text-oasis-champagne hover:underline"
+    <div className="flex gap-3">
+      <div
+        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+        style={{
+          background: 'var(--gold-bg)',
+          border: '1px solid var(--gold-border)',
+          color: 'var(--gold)',
+        }}
       >
-        <ArrowLeft className="h-4 w-4" aria-hidden />
-        Back to help center
-      </Link>
-
-      <header className="space-y-4 rounded-3xl border border-oasis-border bg-oasis-panel p-6 shadow-oasis-card ring-1 ring-white/[0.04] sm:p-8">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-oasis-champagne/35 bg-oasis-panel-soft px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-oasis-warm">
-            {createElement(getCategoryIcon(article.category), {
-              className: 'h-3.5 w-3.5 text-oasis-champagne',
-              'aria-hidden': true,
-            })}
-            {article.category}
-          </span>
-          {article.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-oasis-border bg-oasis-panel-soft px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-oasis-warm-soft"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <h1 className="text-3xl font-semibold tracking-tight text-oasis-warm sm:text-4xl">
-          {article.title}
-        </h1>
-        <p className="max-w-3xl text-lg text-oasis-warm-soft">{article.summary}</p>
-        <p className="inline-flex items-center gap-2 text-sm text-oasis-warm-soft">
-          <Clock className="h-4 w-4 text-oasis-champagne" aria-hidden />
-          <span className="font-medium text-oasis-warm">Estimated time:</span> {estimatedRead}
-        </p>
-      </header>
-
-      <section className="rounded-3xl border border-oasis-border border-l-4 border-l-oasis-champagne bg-gradient-to-br from-oasis-navy/40 to-oasis-panel p-6 shadow-sm sm:p-8">
-        <h2 className="mb-4 text-xl font-semibold text-oasis-warm">Quick Fix</h2>
-        <ul className="list-disc space-y-2.5 pl-5 text-oasis-warm-soft">
-          {article.quickFix.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="rounded-3xl border border-oasis-border bg-oasis-panel p-6 shadow-sm ring-1 ring-white/[0.04] sm:p-8">
-        <h2 className="mb-4 text-xl font-semibold text-oasis-warm">Step-by-Step Instructions</h2>
-        <ol className="list-decimal space-y-3 pl-5 text-oasis-warm-soft">
-          {article.steps.map((item) => (
-            <li key={item} className="leading-relaxed">
-              {item}
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="rounded-3xl border border-oasis-border bg-oasis-panel p-6 shadow-sm ring-1 ring-white/[0.04] sm:p-8">
-        <h2 className="mb-4 text-xl font-semibold text-oasis-warm">If That Didn&apos;t Work</h2>
-        <ul className="list-disc space-y-2.5 pl-5 text-oasis-warm-soft">
-          {article.fallback.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="rounded-3xl border border-oasis-border bg-oasis-panel p-6 shadow-sm ring-1 ring-white/[0.04] sm:p-8">
-        <h2 className="mb-4 text-xl font-semibold text-oasis-warm">Still having trouble?</h2>
-        <p className="mb-6 max-w-2xl text-sm text-oasis-warm-soft">
-          Our team can walk you through the next steps or schedule a visit if needed.
-        </p>
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <a
-            href={TEL_SUPPORT}
-            className="inline-flex items-center justify-center rounded-2xl border border-oasis-champagne/50 bg-oasis-champagne/15 px-5 py-3 text-center text-sm font-semibold text-oasis-warm transition hover:bg-oasis-champagne/25"
-          >
-            Call Support
-          </a>
-          <a
-            href={MAIL_SCHEDULE}
-            className="inline-flex items-center justify-center rounded-2xl border border-oasis-border bg-oasis-panel-soft px-5 py-3 text-center text-sm font-semibold text-oasis-warm transition hover:border-oasis-champagne/40"
-          >
-            Schedule Service
-          </a>
-        </div>
-        <div className="mt-8">
-          <ArticleFeedback key={article.id} articleId={article.id} />
-        </div>
-      </section>
-    </article>
+        {number}
+      </div>
+      <p className="pt-0.5 text-sm leading-relaxed" style={{ color: 'var(--text-dim)' }}>
+        {text}
+      </p>
+    </div>
   )
 }
 
-export default ArticlePage
+function Section({ title, children, tinted }) {
+  return (
+    <section
+      className="rounded-xl p-5 sm:p-6"
+      style={{
+        background: tinted ? 'var(--bg)' : 'var(--bg-surface)',
+        border: '1px solid var(--border)',
+      }}
+    >
+      <h2
+        className="mb-4 text-base font-semibold"
+        style={{ color: 'var(--text)' }}
+      >
+        {title}
+      </h2>
+      {children}
+    </section>
+  )
+}
+
+export default function ArticlePage() {
+  const { id } = useParams()
+  const article = articles.find((item) => item.id === id)
+  const [vote, setVote] = useState('')
+
+  if (!article) {
+    return (
+      <div className="mx-auto max-w-2xl">
+        <div
+          className="rounded-xl p-6"
+          style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+        >
+          <h1 className="text-lg font-semibold" style={{ color: 'var(--text)' }}>Article Not Found</h1>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-dim)' }}>
+            That article is unavailable or may have moved.
+          </p>
+          <Link
+            to="/"
+            className="mt-4 inline-block text-sm font-medium"
+            style={{ color: 'var(--gold)' }}
+          >
+            ← Back to help center
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="mx-auto max-w-2xl space-y-4">
+
+      {/* Breadcrumb */}
+      <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
+        <Link
+          to="/"
+          className="transition hover:opacity-70"
+          style={{ color: 'var(--gold)' }}
+        >
+          Help Center
+        </Link>
+        <span>/</span>
+        <Link
+          to={`/?category=${encodeURIComponent(article.category)}`}
+          className="transition hover:opacity-70"
+          style={{ color: 'var(--gold)' }}
+        >
+          {article.category}
+        </Link>
+        <span>/</span>
+        <span>{article.title}</span>
+      </div>
+
+      {/* Title block */}
+      <div
+        className="rounded-xl p-5 sm:p-6"
+        style={{
+          background: 'var(--bg-surface)',
+          border: '1px solid var(--border)',
+        }}
+      >
+        <span
+          className="mb-2 inline-block text-[10px] font-bold uppercase tracking-[0.15em]"
+          style={{ color: 'var(--gold)' }}
+        >
+          {article.category}
+        </span>
+        <h1
+          className="text-2xl font-semibold leading-snug sm:text-3xl"
+          style={{ color: 'var(--text)' }}
+        >
+          {article.title}
+        </h1>
+        <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--text-dim)' }}>
+          {article.summary}
+        </p>
+      </div>
+
+      {/* Quick Fix */}
+      <Section title="⚡ Quick Fix — Try These First" tinted>
+        <ul className="space-y-2.5">
+          {article.quickFix.map((item, i) => (
+            <li key={item} className="flex gap-3 text-sm leading-relaxed">
+              <span
+                className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
+                style={{ background: 'var(--gold-bg)', color: 'var(--gold)' }}
+              >
+                {i + 1}
+              </span>
+              <span style={{ color: 'var(--text-dim)' }}>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Step by step */}
+      <Section title="Step-by-Step Instructions">
+        <div className="space-y-4">
+          {article.steps.map((item, i) => (
+            <StepBlock key={item} number={i + 1} text={item} />
+          ))}
+        </div>
+      </Section>
+
+      {/* Fallback */}
+      <Section title="If That Didn't Work">
+        <ul className="space-y-2">
+          {article.fallback.map((item) => (
+            <li key={item} className="flex gap-2.5 text-sm leading-relaxed">
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: 'var(--gold)' }} />
+              <span style={{ color: 'var(--text-dim)' }}>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* CTA */}
+      <section
+        className="rounded-xl p-5 sm:p-6"
+        style={{
+          background: 'var(--bg-surface)',
+          border: '1px solid var(--border)',
+        }}
+      >
+        <h2 className="mb-1 text-base font-semibold" style={{ color: 'var(--text)' }}>
+          Still not working?
+        </h2>
+        <p className="mb-4 text-sm" style={{ color: 'var(--text-dim)' }}>
+          Our team is available and ready to help.
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          <a
+            href="tel:+14809077095"
+            className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-opacity hover:opacity-85"
+            style={{ background: 'var(--gold)', color: '#fff' }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" />
+            </svg>
+            Call 480-907-7095
+          </a>
+
+          <a
+            href="https://www.oasissmarthomes.com/contact"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all"
+            style={{
+              border: '1px solid var(--border)',
+              color: 'var(--text-dim)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--gold-border)'
+              e.currentTarget.style.color = 'var(--text)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border)'
+              e.currentTarget.style.color = 'var(--text-dim)'
+            }}
+          >
+            Schedule a Service Visit
+          </a>
+        </div>
+
+        {/* Helpful vote */}
+        <div
+          className="mt-5 flex items-center gap-3 border-t pt-4"
+          style={{ borderColor: 'var(--border-light)' }}
+        >
+          <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+            Was this helpful?
+          </span>
+          {vote === '' ? (
+            <div className="flex gap-2">
+              {['Yes', 'No'].map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => setVote(v.toLowerCase())}
+                  className="rounded-md px-3 py-1 text-xs font-medium transition-all"
+                  style={{
+                    border: '1px solid var(--border)',
+                    color: 'var(--text-dim)',
+                    background: 'transparent',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--gold-border)'
+                    e.currentTarget.style.color = 'var(--gold)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--border)'
+                    e.currentTarget.style.color = 'var(--text-dim)'
+                  }}
+                >
+                  {v}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <span className="text-xs" style={{ color: 'var(--gold)' }}>
+              {vote === 'yes'
+                ? 'Glad we could help.'
+                : 'Thanks — please call us if you need more support.'}
+            </span>
+          )}
+        </div>
+      </section>
+
+    </div>
+  )
+}

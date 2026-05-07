@@ -1,34 +1,40 @@
-import { Search } from 'lucide-react'
-
-function SearchBar({ value, onChange, variant = 'default', placeholder }) {
-  const isHero = variant === 'hero'
+export default function SearchBar({ value, onChange }) {
   return (
-    <div className={`mx-auto w-full ${isHero ? 'max-w-2xl' : 'max-w-3xl'}`}>
-      <label htmlFor="kb-search" className="sr-only">
-        Search knowledgebase
-      </label>
-      <div
-        className={`relative flex items-center rounded-2xl border border-oasis-border bg-oasis-panel-soft ring-1 ring-white/5 transition focus-within:border-oasis-champagne/60 focus-within:ring-2 focus-within:ring-oasis-champagne/20 ${
-          isHero ? 'px-4 py-1 sm:px-5' : 'px-4 py-1'
-        }`}
+    <div className="relative">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2"
+        style={{ color: 'var(--text-muted)' }}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
       >
-        <Search
-          className={`pointer-events-none shrink-0 text-oasis-warm-soft/70 ${isHero ? 'h-5 w-5 sm:h-6 sm:w-6' : 'h-5 w-5'}`}
-          aria-hidden
-        />
-        <input
-          id="kb-search"
-          type="search"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          placeholder={placeholder ?? 'Search for guided help (lighting, shades, audio, WiFi...)'}
-          className={`min-w-0 flex-1 border-0 bg-transparent text-oasis-warm placeholder:text-oasis-warm-soft/55 focus:outline-none focus:ring-0 ${
-            isHero ? 'px-3 py-4 text-base sm:px-4 sm:py-5 sm:text-lg' : 'px-3 py-4 text-base sm:text-lg'
-          }`}
-        />
-      </div>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+      </svg>
+      <label htmlFor="kb-search" className="sr-only">Search help articles</label>
+      <input
+        id="kb-search"
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search — TV, remote, audio, WiFi, cameras..."
+        className="w-full rounded-xl py-3 pl-11 pr-4 text-sm outline-none transition-all"
+        style={{
+          background: 'var(--bg-surface)',
+          border: '1px solid var(--border)',
+          color: 'var(--text)',
+          fontFamily: 'var(--font-ui)',
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.borderColor = 'var(--gold)'
+          e.currentTarget.style.boxShadow = '0 0 0 3px var(--gold-bg)'
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.borderColor = 'var(--border)'
+          e.currentTarget.style.boxShadow = 'none'
+        }}
+      />
     </div>
   )
 }
-
-export default SearchBar
