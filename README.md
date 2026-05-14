@@ -2,56 +2,54 @@
 
 A mobile-first knowledgebase for Control4 smart home clients.
 
-## Overview
+## Problem
 
-Oasis Help Desk is a self-service support portal built specifically for Control4 smart home system users. Clients can search articles, troubleshoot common issues, and find answers without needing to contact support — reducing ticket volume and improving customer satisfaction.
+Control4 smart home clients frequently contact their integrator for help with basic issues — changing volume limits, adjusting lighting scenes, troubleshooting remotes — questions that don't require a technician visit but still consume support time.
+
+## Solution
+
+Oasis Help Desk is a self-service support portal built specifically for smart home users. Clients can search articles, troubleshoot common issues, and find answers independently, reducing support ticket volume and improving customer satisfaction.
+
+## Screenshots
+
+> *Add 2–4 screenshots here*
 
 ## Tech Stack
 
 - JavaScript
 - Vite
 - Tailwind CSS
-- PostCSS
 
-## Getting Started
+## Features
 
-### Prerequisites
+- Searchable article knowledgebase
+- Mobile-first design for in-home use on phones and tablets
+- Organized by Control4 system category
+- Fast, fully client-side — no server required
+- Clean reading experience optimized for non-technical users
 
-- Node.js 18+
-- npm
-
-### Installation
+## Installation
 
 ```bash
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
-### Build
+## Lessons Learned
 
-```bash
-npm run build
-```
+- Designing for non-technical users means using plain language and avoiding jargon throughout
+- Mobile-first isn't just a CSS breakpoint strategy — it changes navigation patterns, tap target sizes, and content density
+- A knowledgebase is only as good as the structure of its content — IA decisions matter as much as the UI
 
-## Project Structure
+## Future Improvements
 
-```
-src/         # Knowledgebase articles, search, and UI components
-public/      # Static assets
-```
-
-## Deployment
-
-Deploy the `dist/` folder to any static host. The site is fully client-side — no server required.
+- AI-powered search with natural language queries
+- Integrator admin dashboard to manage articles per client
+- Client-specific article sets based on their installed system
 
 ## Related
 
-- [`oasis-saas`](https://github.com/nmswainston/oasis-saas) — the SaaS product layer built on top of this
+- [`oasis-saas`](https://github.com/nmswainston/oasis-saas) — the multi-tenant SaaS version of this product
 
 ---
 
