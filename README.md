@@ -12,7 +12,7 @@ Oasis Help Desk is a self-service support portal built specifically for smart ho
 
 ## Screenshots
 
-> *Add 2–4 screenshots here*
+<!-- Add 2–4 screenshots of the app here -->
 
 ## Tech Stack
 
